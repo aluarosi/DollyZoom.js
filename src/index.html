@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+@source: https://github.com/aluarosi/DollyZoom.js
+@licstart  
+    This file is part of DollyZoom.js
+    (A 3D interactive Dolly-Zoom experiment for the web browser)
+    https://github.com/aluarosi/DollyZoom.js
+    
+    Copyright (C) 2014 Alvaro Santamaria Herrero (aluarosi)
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+@licend  
+-->
+<html>
+    <head>
+        <title>Dolly Zoom</title>
+        <link rel="stylesheet" href="style.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+        <script src="js/lib/require.js" data-main="js/main"></script>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="container3d">   <!-- 3D scene, three.js -->
+                <div id="infoview">
+                        <div><span id="D" class="view-data"> </span><span> Dist. &nbsp; </span></div>
+                        <div><span id="F" class="view-data"> </span><span> F(mm) &nbsp;</span></div>
+                </div>
+                <div id="menu">
+                    <h1>DollyZoom.js<h1>
+                    <h2>An experiment about <br>Dolly Zoom</h2>
+                    <nav>
+                        <ul style="list-style-type: none; margin: 0; padding: 2em;">
+                            <li><a href="" id="select_tour"><h2>Presentation</h2></a></li>
+                            <li><h2>&nbsp;</h2></li>
+                            <li><a href="" id="select_play"><h2>Play!<h2></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="slide">
+                    <div id="slide-content"></div>
+                    <menu>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li><a href="" id="slide_cancel"><h2>[X]<h2></a></li>
+                            <li><a href="" id="slide_restart"><h2>|&lt;</h2></a></li>
+                            <li><a href="" id="slide_next"><h2>&gt;&gt;<h2></a></li>
+                            <li><a href="" id="slide_pause"><h2>||<h2></a></li>
+                            <li><a href="" id="slide_paused" style="visibility:hidden;"><h2>(paused)<h2></a></li>
+                        </ul>
+                    </menu>
+                </div>
+            </div> 
+            <div id="control-container">
+                <div id="control-panel">    <!-- Control panel (2D) with buttons and sliders, for KineticJS -->
+                    <div id="slider-D"></div>
+                    <div id="slider-F"></div>
+                    <div id="button-DZ"></div>
+                    <div id="button-rotate"></div>
+                    <div id="bang-reset"></div>
+                    <div id="bang-presentation"></div>
+                    <div id="info-panel">
+                        <nav>
+                            <a href="">DollyZoom.js</a> is an experiment from <a target="_blank" href="http://dofideas.com">DoF ideas</a>
+                            &nbsp;
+                            <a id="about-link" href="">About&Help</a>
+                            &nbsp;
+                            <a href="http://dofideas.com/" target="_blank">Article</a>
+                        </nav>
+                    </div>
+                </div>          
+                <div id="scenario-selector">
+                    <a href="" alt="Scenario 1"><img alt="Scenario 1" src="img/thumb_scenario_1.png"/></a>
+                    <a href="" alt="Scenario 2"><img alt="Scenario 2" src="img/thumb_scenario_2.png"/></a>
+                </div>      <!-- For clicling on a snapshot of the scenario -->
+            </div>
+            <div id="controls"></div>               <!-- To be removed, only for development, dat-gui control panel -->
+
+            <div id="splash"></div>                 <!-- Splash screen -->
+
+            <div id="about-page">
+                <h1 id="closex" style="float: right;"><a href="" style="text-decoration:none;">[x]</a></h1>
+                <h1 class="magenta">DollyZoom.js</h1>
+                <p>DollyZoom.js is playful, interactive experiment aimed to show the cinematic effect known as "dolly zoom". As a side effect, it will also help you understand the photographic concepts of "dolly" and "zoom" separately, and why framing <em>using your feet</em> is not the same as framing using your camera zoom.</p>
+                <p>In order to run properly, you need a web broswer that fully supports the WebGL technology. Check if yours is supported <a href="http://caniuse.com/webgl" target="_blank">here</a>. For more information visit the <a href="http://dofideas.com/" target="_blank">DoFideas</a> site.</p>
+                <h2>Contact & License</h2>
+<div>
+<span>DollyZoom.js</span> by <a href="http://dofideas.com/about/" target="_blank">Alvaro Santamaria Herrero</a>(2014) is licensed under <a href="http://www.gnu.org/licenses/">GNU General Public License (Version 3)</a>. DollyZoom.js source available in <a href="https://github.com/aluarosi/" target="_blank">github.com/aluarosi</a>.
+<span>DollyZoom.js</span> is a part of <a href="http://dofideas.com" target="_blank">DoF ideas</a>.
+<br/>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" target="_blank"><img alt="Licencia de Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">  <a xmlns:dct="http://purl.org/dc/terms/" href="http://dofideas.com" rel="dct:source">DoF ideas</a>'s blog, text, images and media</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://dofideas.com/about/" property="cc:attributionName" rel="cc:attributionURL">Alvaro Santamaria Herrero</a> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES">Creative Commons Reconocimiento-CompartirIgual 3.0 Unported License</a> unless explicitly stated otherwise. Content by other authors and collaborators is clearly labeled, published with their explicit consent and keeping all rights reserved unless stated otherwise. 
+</div>
+                <h2>Play with it! (Help)</h2>
+                <p>At the beginning, you can choose to start with the presentation or skip it and go directly to the interactive mode.</p>
+                <p>You can use the following controls on the control panel at the bottom:</p>
+                <ul>
+                    <li><a>Dolly</a> slider, for getting closer to or farther from the scene.</li>
+                    <li><a>Zoom</a> slider, for changing the focal length of the lense.</li>
+                    <li><a>D-Z</a> button, binds together the Dolly and the Zoom sliders enabling the dolly zoom effect.</li>
+                    <li><a>Rotate</a> button, makes the camera move around the scene's main point.</li>
+                    <li><a>Reset</a> button, resets camera and controls to their initial positions.</li>
+                    <li><a>|&gt;</a> button, starts the presentation.</li>
+                </ul>
+                <p>You can also move the camera viewpoint more freely clicking and draggin with the mouse. If your mouse has a wheel you can dolly in and out with it.</p>
+                <p>During the presentation, you have the following options at the top:</p>
+                <ul>
+                    <li><a>||</a> pause the presentation.</li>
+                    <li><a>&gt;&gt;</a> jump to next slide.</li>
+                    <li><a>|&lt;</a> go back to the first slide.</li>
+                    <li><a>[x]</a> quit the presentation.</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
+
+

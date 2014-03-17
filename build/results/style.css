@@ -1,0 +1,281 @@
+body {
+    position:absolute;
+    height: 98%;
+    width: 98%;
+    background-color: black;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Verdana", sans-serif;
+    font-size: 100%;
+}
+
+h1,h2,h5 {
+    font-weight: normal;
+}
+
+a {
+    color: cyan;
+}
+
+#wrapper {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#splash {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,1); 
+    background-size: 100%;
+    background-image: url("img/splash_screen_1.png");
+    z-index: 100;
+    visibility: visible;
+}
+
+#container3d {
+    position: absolute;
+    height: 66.66%;
+    width: 100%;
+    visibility: hidden;
+}
+
+#infoview {
+    position: absolute;
+    width: 25%;
+    bottom: 0px;
+    left: 75%;
+    color: white;
+    background-color: rgba(0,0,0,0.8); 
+    font-size: 12px;
+    overflow: hide;
+}
+
+#infoview div {
+    float :right;
+}
+
+.view-name {
+    text-align: right;
+}
+.view-data {
+    width: 20px;
+    font-size: 16px;
+}
+    
+    
+
+#control-container {
+    position: absolute;
+    left: 0px;
+    bottom: 0px; 
+    width: 100%;
+    height: 33.33%;
+    visibility: hidden;
+    border-top: 1px solid #030303;
+}
+
+#control-panel {
+    position: absolute;
+    left: 0px;
+    bottom: 0px; 
+    width: 75%;
+    height: 100%;
+}
+
+#scenario-selector {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    right: 0px;
+    bottom: 0px;    
+}
+
+#scenario-selector img {
+    width: 46%;
+    float: right;
+    overflow: hidden;
+    border: 2px solid black;
+}
+
+#controls {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    z-index: 300;
+    width:200px;
+    height:200px;
+}
+
+#slider-D {
+    position : absolute;
+    top: 0%;
+    left: 0%;
+    width: 60%;    
+    height: 30%;    
+}
+#slider-F {
+    position : absolute;
+    top: 30%;
+    left: 0%;
+    width: 60%;    
+    height: 30%;    
+}
+
+#button-DZ {
+    position : absolute;
+    top: %;
+    left: 60%;
+    width: 10%;    
+    height: 30%;    
+}
+
+#button-rotate {
+    position : absolute;
+    top: 0%;
+    left: 70%;
+    width: 10%;    
+    height: 30%;    
+}
+
+#bang-reset {
+    position : absolute;
+    top: 0%;
+    left: 80%;
+    width: 10%;    
+    height: 30%;    
+}
+
+#bang-presentation {
+    position : absolute;
+    top: 0%;
+    left: 90%;
+    width: 10%;    
+    height: 30%;    
+}
+
+#info-panel {
+    color: white;
+    position : absolute;
+    top: 66%;
+    bottom: 0%; 
+    left: 0%;
+    right: 0%;
+    font-size: 160%;
+}
+
+#menu {
+    background-color: rgba(0,0,0,0.9);
+    border: 1px solid grey;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80%;
+    width: 40%;
+    margin: auto;
+    padding: 2%;
+    visibility: hidden;
+
+    text-align: center;
+    font-size: 120%;
+}
+
+#slide {
+    background-color: rgba(0,0,0,0.8);
+    border: 1px solid grey;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    visibility: hidden;
+
+    text-align: center;
+    font-size: 200%;
+    line-height: 160%;
+    font-weight: lighter;
+}
+
+#slide h5 {
+    font-size: 100%;
+}
+
+#slide menu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    text-align: center;
+    font-size: 70%;
+}
+#slide menu h2 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+#slide menu li {
+    float: right;
+    margin-right: 2em;
+}
+    
+
+#slide menu a {
+    text-decoration: none;
+}
+
+#slide-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 50%;
+    padding: 2%;
+}
+
+#about-page {
+    visibility: hidden;
+    display: none;
+    border: 1px solid red;
+    z-index: 999;
+    color: white;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border: 1px solid grey;
+    background: rgba(30,30,30,0.90);
+    overflow: auto;
+
+    font-size: 170%;
+    padding-left: 1em;
+    padding-right: 1em;
+
+}
+
+#about-page h1 {
+    font-size: 140%;
+}
+
+#about-page h2 {
+    text-decoration: underline;
+    font-size: 140%;
+}
+
+.magenta {
+    color: #f0f;
+}
