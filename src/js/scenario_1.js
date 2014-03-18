@@ -262,9 +262,9 @@ define(['cosa'], function(cosa){
         var path = "img/sky_cube_test_";
         var format = '.png';
         var urls = [
-            path + '1' + format, path + '2' + format,
-            path + '3' + format, path + '4' + format,
-            path + '5' + format, path + '6' + format
+            path + '1' + format, path + '1' + format,
+            path + '1' + format, path + '1' + format,
+            path + '5' + format, path + '1' + format
         ];
 
         var textureCube = THREE.ImageUtils.loadTextureCube( urls );
