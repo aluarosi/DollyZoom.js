@@ -261,10 +261,11 @@ define(['cosa'], function(cosa){
         // Sky box
         var path = "img/sky_cube_test_";
         var format = '.png';
+        var size_suffix = "_256px";
         var urls = [
-            path + '1' + format, path + '1' + format,
-            path + '1' + format, path + '1' + format,
-            path + '5' + format, path + '1' + format
+            path + '1' +  size_suffix + format, path + '1' + size_suffix + format,
+            path + '1' +  size_suffix + format, path + '1' + size_suffix + format,
+            path + '5' +  size_suffix + format, path + '1' + size_suffix + format
         ];
 
         var textureCube = THREE.ImageUtils.loadTextureCube( urls );
