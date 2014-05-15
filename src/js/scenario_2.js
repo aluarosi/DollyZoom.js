@@ -252,7 +252,8 @@ define(['cosa'], function(cosa){
             floor_geometry,
             floor_material
         );
-        floor.position.set(0,0,-8*7*0.7+0.1);
+        // Small offset to prevent z-fighting
+        floor.position.set(0,0,-8*7*0.7+0.2);
         total.add(floor);
 
         

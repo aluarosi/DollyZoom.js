@@ -258,10 +258,21 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
         */
         this.task_list = [];
         this.sequence.forEach( function(item, i){
+            // Shouldn't this dispatcher object be outside this function? 
+            //  --> (Fast thought, 20140515, while hacking for Spanish language)
             var dispatcher = {
                 "slide"     : function(param_list){
                     var idx = param_list[1];                        
-                    var html_content = param_list[2];                        
+                    // Fast hack to include translation to Spanish (20140515)
+                    if (app.config.language === "ES") {
+                        var html_content = param_list[3];                        
+                        // If content is still not translated, use english version
+                        if (html_content === undefined) {
+                            html_content = param_list[2]; 
+                        }
+                    } else {
+                        var html_content = param_list[2];                        
+                    }
                     return slide_task(idx, html_content);
                 },
                 "action"    : function(param_list){
@@ -338,8 +349,14 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
         ["scenario", "x", 1],
         ["reset", "_"],
         ["slide", "1", "<h5 style=\"font-size: 140%;\">Dolly Zoom</h5>"],
-        ["slide", "2", "<p>&quot;The dolly zoom is an unsettling in-camera effect that appears to undermine normal visual perception.&quot; (Wikipedia)</p>"],
-        ["slide", "3", "<p>Like this...</p>"],
+        ["slide", "2", 
+            "<p>&quot;The dolly zoom is an unsettling in-camera effect that appears to undermine normal visual perception.&quot; (Wikipedia)</p>",
+            "<p>&quot;El <em>dolly zoom</em> es un efecto perturbador realizado con la cámara que parece alterar la percepción visual ordinaria&quot; (Wikipedia en inglés).</p>" 
+        ],
+        ["slide", "3", 
+            "<p>Like this...</p>",
+            "<p>Así:</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
@@ -352,7 +369,10 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "4", "<p>Again.</p>"],
+        ["slide", "4", 
+            "<p>Again.</p>",
+            "<p>Otra vez.</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
@@ -365,11 +385,26 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "5", "<p>You may have seen this effect in films like <em>Vertigo</em>, <em>Jaws</em> and many others... </p>"],
-        ["slide", "6", "<p>How is it done?</p>"],
-        ["slide", "7", "<p>First we need to learn the difference between Dolly and Zoom.</p>"],
-        ["slide", "8", "<h5>Dolly</h5><p>In order to do the Dolly, we move the camera closer to or farther from the objects in the scene.</p>"],
-        ["slide", "9", "<h5>Dolly</h5><p>Let's walk away.</p>"],
+        ["slide", "5", 
+            "<p>You may have seen this effect in films like <em>Vertigo</em>, <em>Jaws</em> and many others... </p>",
+            "<p>Puede que hayas visto este efecto en películas como <em>Vértigo</em>, <em>Tiburón</em> y muchas otras... </p>"
+        ],
+        ["slide", "6", 
+            "<p>How is it done?</p>",
+            "<p>¿Cómo se consigue?</p>" 
+        ],
+        ["slide", "7", 
+            "<p>First we need to learn the difference between Dolly and Zoom.</p>",
+            "<p>Primero necesitamos aprender a diferenciar entre <em>Dolly</em> y <em>Zoom</em>.</p>"
+        ],
+        ["slide", "8", 
+            "<h5>Dolly</h5><p>In order to do the Dolly, we move the camera closer to or farther from the objects in the scene.</p>",
+            "<h5>Dolly</h5><p>Para hacer <em>Dolly</em> acercamos o alejamos la cámara en relación a los objetos de la composición.</p>"
+        ],
+        ["slide", "9", 
+            "<h5>Dolly</h5><p>Let's walk away.</p>",
+            "<h5>Dolly</h5><p>Vamos a alejarnos.</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
@@ -377,8 +412,14 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "10", "<h5>Dolly</h5><p>Here we are. Pay attention to the sizes of the chessboard and the mountains in the background.</p>"],
-        ["slide", "11", "<h5>Dolly</h5><p>Now let's get closer using our feet.</p>"],
+        ["slide", "10", 
+            "<h5>Dolly</h5><p>Here we are. Pay attention to the sizes of the chessboard and the mountains in the background.</p>",
+            "<h5>Dolly</h5><p>Ahora presta atención a los tamaños del tablero y las montañas del fondo.</p>"
+        ],
+        ["slide", "11", 
+            "<h5>Dolly</h5><p>Now let's get closer using our feet.</p>",
+            "<h5>Dolly</h5><p>Acerquémonos <em>con los pies</em>.</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,10), 
@@ -386,8 +427,14 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "12", "<h5>Dolly</h5><p>While the chessboard gets much bigger (8 times), the mountains in the far background hardly change their size.</p>"],
-        ["slide", "13", "<h5>Dolly</h5><p>Let's get away again so that we can use the Zoom instead.</p>"],
+        ["slide", "12", 
+            "<h5>Dolly</h5><p>While the chessboard gets much bigger (8 times), the mountains in the far background hardly change their size.</p>",
+            "<h5>Dolly</h5><p>Mientras que el tablero se hace mucho mayor (8 veces), las montañas en la lejanía apenas cambian de tamaño.</p>"
+        ],
+        ["slide", "13", 
+            "<h5>Dolly</h5><p>Let's get away again so that we can use the Zoom instead.</p>",
+            "<h5>Dolly</h5><p>Vamos a alejarnos de nuevo para poder usar el zoom esta vez.</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
@@ -395,8 +442,14 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "14", "<h5>Zoom</h5><p>When we use the zoom we change the focal length of our camera's lense (with our fingers) to make things <em>look</em> bigger and closer.</p>"],
-        ["slide", "15", "<h5>Zoom</h5><p>Our feet stay where they are. It is as if our sight got closer while we stay in place.</p>"],
+        ["slide", "14", 
+            "<h5>Zoom</h5><p>When we use the zoom we change the focal length of our camera's lense (with our fingers) to make things <em>look</em> bigger and closer.</p>",
+            "<h5>Zoom</h5><p>Al usar el zoom cambiamos la longitud focal de la lente de nuestra cámara (con nuestros dedos) para hacer que los objetos <em>parezcan</em> mayores y más cercanos.</p>"
+        ],
+        ["slide", "15", 
+            "<h5>Zoom</h5><p>Our feet stay where they are. It is as if our sight got closer while we stay in place.</p>",
+            "<h5>Zoom</h5><p>Nuestros pies permanecen en su sitio. Es como si nuestra mirada se acercara mientras que nosotros no nos movemos.</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
@@ -410,7 +463,10 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "16", "<h5>Zoom</h5><p>Let's zoom in again. Pay attention to the sizes of the chessboard and the background mountains.</p>"],
+        ["slide", "16", 
+            "<h5>Zoom</h5><p>Let's zoom in again. Pay attention to the sizes of the chessboard and the background mountains.</p>",
+            "<h5>Zoom</h5><p>Vamos a usar el zoom de nuevo. Atención a los tamaños del tablero y las montañas del fondo.</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
@@ -418,8 +474,14 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 8
         }],
         ["pause", "_", 1],
-        ["slide", "17", "<h5>Zoom</h5><p>Using the Zoom the mountains in the background get 8 times bigger, the same as for the chessboard in the foreground... and every other object in the scene!</p>"],
-        ["slide", "18", "<p>Let's get back to the chessboard to go for the Dolly Zoom.</p>"],
+        ["slide", "17", 
+            "<h5>Zoom</h5><p>Using the Zoom the mountains in the background get 8 times bigger, the same as for the chessboard in the foreground... and every other object in the scene!</p>",
+            "<h5>Zoom</h5><p>Al usar el zoom las montañas en el fondo aumentan su tamaño 8 veces, lo mismo que pasa con el tablero en primer plano... ¡y con todos los demás objetos de la composición!</p>"]
+        ,
+        ["slide", "18", 
+            "<p>Let's get back to the chessboard to go for the Dolly Zoom.</p>",
+            "<p>Volvamos cerca del tablero para probar el Dolly Zoom.</p>"
+        ],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,80), 
             target_dest : new THREE.Vector3(0,0,0),
@@ -430,7 +492,10 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             target_dest : new THREE.Vector3(0,0,0),
             fovZ_dest   : 1
         }],
-        ["slide", "19", "<h5>Dolly Zoom</h5><p>Let's walk a few steps back...</p>"],
+        ["slide", "19", 
+            "<h5>Dolly Zoom</h5><p>Let's walk a few steps back ...</p>",
+            "<h5>Dolly Zoom</h5><p>Caminamos unos cuantos pasos hacia atrás ...</p>"
+        ],
         ["pause", "_", 1],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,20), 
@@ -438,42 +503,60 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "20", "<h5>Dolly Zoom</h5><p>...and then zoom in to compensate and frame the chessboard again.</p>"],
+        ["slide", "20", 
+            "<h5>Dolly Zoom</h5><p>...and then zoom in to compensate and frame the chessboard again.</p>",
+            "<h5>Dolly Zoom</h5><p>...y aumentamos el zoom para compensar y encuadrar el tablero de nuevo.</p>"
+],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,20), 
             target_dest : new THREE.Vector3(0,0,0),
             fovZ_dest   : 2
         }],
         ["pause", "_", 1],
-        ["slide", "21", "<h5>Dolly Zoom</h5><p>A few additional steps back ...</p>"],
+        ["slide", "21", 
+            "<h5>Dolly Zoom</h5><p>A few additional steps back ...</p>",
+            "<h5>Dolly Zoom</h5><p>Nos alejamos unos cuantos pasos más ...</p>"
+        ],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,40), 
             target_dest : new THREE.Vector3(0,0,0),
             fovZ_dest   : 2
         }],
         ["pause", "_", 1],
-        ["slide", "22", "<h5>Dolly Zoom</h5><p>...and we zoom in again.</p>"],
+        ["slide", "22", 
+            "<h5>Dolly Zoom</h5><p>...and we zoom in again.</p>",
+            "<h5>Dolly Zoom</h5><p>...y aumentamos el zoom de nuevo.</p>"
+        ],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,40), 
             target_dest : new THREE.Vector3(0,0,0),
             fovZ_dest   : 4
         }],
         ["pause", "_", 1],
-        ["slide", "3", "<h5>Dolly Zoom</h5><p>One last time: backwards Dolly first...</p>"],
+        ["slide", "3", 
+            "<h5>Dolly Zoom</h5><p>One last time: backwards Dolly first ...</p>",
+            "<h5>Dolly Zoom</h5><p>Por última vez: hacemos <em>Dolly</em> alejándonos ...</p>"
+        ],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,80), 
             target_dest : new THREE.Vector3(0,0,0),
             fovZ_dest   : 4
         }],
         ["pause", "_", 1],
-        ["slide", "23", "<h5>Dolly Zoom</h5><p>... and we finally compensate with the Zoom.</p>"],
+        ["slide", "23", 
+            "<h5>Dolly Zoom</h5><p>... and we finally compensate with the Zoom.</p>",
+            "<h5>Dolly Zoom</h5><p>... y finalmente compensamos con el <em>Zoom</em>.</p>"
+        ],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,80), 
             target_dest : new THREE.Vector3(0,0,0),
             fovZ_dest   : 8
         }],
         ["pause", "_", 1],
-        ["slide", "24", "<h5>Dolly Zoom</h5><p>Now let's do it again, but this time smoothly. So we achieve the Dolly Zoom effect!</p>"],
+        ["slide", "24", 
+            "<h5>Dolly Zoom</h5><p>Now let's do it again, but this time smoothly. So we achieve the Dolly Zoom effect!</p>",
+            "<h5>Dolly Zoom</h5><p>Para concluir vamos a repetir el proceso, pero esta vez de forma continua. ¡Así obtenemos el efecto <em>Dolly Zoom</em>!</p>"
+        ],
         ["action", "1", 2, {
             destination : new THREE.Vector3(0,0,10), 
             target_dest : new THREE.Vector3(0,0,0),
@@ -486,8 +569,14 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 8 
         }],
         ["pause", "_", 1],
-        ["slide", "25", "<p>Now you can play with the controls below to reproduce the Dolly, the Zoom and the Dolly Zoom.</p>"],
-        ["slide", "26", "<p>You can try the Dolly Zoom using different camera locations and angles.</p>"],
+        ["slide", "25", 
+            "<p>Now you can play with the controls below to reproduce the Dolly, the Zoom and the Dolly Zoom.</p>",
+            "<p>Ahora puedes jugar con los controles de más abajo para reproducir el <em>Dolly</em>, el <em>Zoom</em> y el <em>Dolly Zoom</em>.</p>"
+        ],
+        ["slide", "26", 
+            "<p>You can try the Dolly Zoom using different camera locations and angles.</p>",
+            "<p>Puedes probar el <em>Dolly Zoom</em> con diferentes posiciones y ángulos de cámara.</p>"
+    ],
         ["action", "1", 1, {
             destination : new THREE.Vector3(16,16,80), 
             target_dest : new THREE.Vector3(0,0,0),
@@ -505,7 +594,10 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 8 
         }],
         ["pause", "_", 1],
-        ["slide", "27", "<p>Experiment with Dolly Zoom while the camera is going around the chessboard. Either far away...</p>"],
+        ["slide", "27", 
+            "<p>Experiment with Dolly Zoom while the camera is going around the chessboard. Either far away...</p>",
+            "<p>Experimenta con el <em>Dolly Zoom</em> mientras la cámara rodea el tablero. Bien desde lejos ...</p>"
+],
         ["reset", "_"],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,80), 
@@ -514,7 +606,10 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
         }],
         ["rotate","x",true],
         ["pause", "_", 10],
-        ["slide", "28", "<p>...or by the chessboard.</p>"],
+        ["slide", "28", 
+            "<p>...or by the chessboard.</p>",
+            "<p>...bien cerca del tablero.</p>"
+],
         ["reset", "_"],
         ["action", "1", 1, {
             destination : new THREE.Vector3(0,0,10), 
@@ -523,7 +618,10 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
         }],
         ["rotate","x",true],
         ["pause", "_", 10],
-        ["slide", "29", "<p>You can even emulate Alfred Hitchcock in the bell tower scene (Vertigo, 1958).</p>"],
+        ["slide", "29", 
+            "<p>You can even emulate Alfred Hitchcock in the bell tower scene (Vertigo, 1958).</p>",
+            "<p>Puedes incluso emular a Alfred Hitchcock en la escena del campanario (Vértigo, 1958).</p>"
+        ],
         ["rotate","x",false],
         ["scenario", "1", 2],
         ["reset", "_"],
@@ -548,8 +646,8 @@ define(['ongoing','event0','camera_driver','jquery', 'tweenjs'],
             fovZ_dest   : 1
         }],
         ["pause", "_", 1],
-        ["slide", "30", "<p>The End</p>"],
-        ["slide", "31", "<p>The End</p>"],
+        ["slide", "30", "<p>The End</p>", "<p>Fin</p>"],
+        ["slide", "31", "<p>The End</p>", "<p>Fin</p>"],
         ["scenario", "x", 1],
         ["action", "3", 2, {
             destination : new THREE.Vector3(10,0,-10), 

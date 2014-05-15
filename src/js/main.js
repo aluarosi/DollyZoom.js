@@ -62,6 +62,11 @@ require([   'acti0',
     // CONFIG
     app.setConfig({
         unity_focal_length  :   36.0,
+        /**
+          Language --> EN (english). Change manually to ES (spanish) and recompile
+          It is also needed to use a different index.html file translated to spansih before compiling
+         */
+        language : "EN" 
     }); 
     // SETUP
     app.on('setup', setup_view_manager);
